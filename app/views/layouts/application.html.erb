@@ -25,6 +25,32 @@
   </head>
 
   <body>
+    <header>
+      <% if authenticated? %>
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "About", homes_about_path %>
+        </li>
+        <li>
+          <%= link_to "Log out", session_path, data: { turbo_method: :delete } %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "About", homes_about_path %>
+        </li>
+        <li>
+          <%= link_to "Sign up", new_user_path %>
+        </li>
+        <li>
+          <%= link_to "Log in", new_session_path %>
+        </li>
+    <% end %>
+  </header>
     <%= yield %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
