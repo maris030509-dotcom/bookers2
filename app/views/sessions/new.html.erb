@@ -1,11 +1,12 @@
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
+<h1>Log in</h1>
 <%= form_with url: session_path do |form| %>
   <p>Name</p>
-  <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username",  value: params[:name] %><br>
+  <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username",  value: params[:name] ,minlength: 2 ,maxlength: 20 %><br>
   <p>Password</p>
-  <%= form.password_field :password, required: true, autocomplete: "current-password",  maxlength: 72 %><br>
+  <%= form.password_field :password, required: true, autocomplete: "current-password",  maxlength: 20 %><br>
   <%= form.submit "Log in" %>
 <% end %>
 <br>

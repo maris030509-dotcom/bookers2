@@ -17,7 +17,9 @@
 
 <% if @user.id == current_user.id %>
     <div class="profile-edit">
-      <%= link_to "edit", edit_user_path(@user), class: "edit-btn" %>
+      <%= link_to edit_user_path(@user), class: "btn btn-light w-50 d-flex justify-content-center align-items-center" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
     </div>
 <% end %>
 

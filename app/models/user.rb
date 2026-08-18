@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   validates :password, length: { minimum: 6 }, on: :create
+  validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 }
+  validates :introduce, length: { maximum: 50 }
 
   has_many :sessions, dependent: :destroy
 

@@ -1,14 +1,36 @@
 <h1>Book detail</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<%= link_to user_path(@book.user) do %>
-  <%= image_tag @book.user.get_profile_image(100,100) %>
-<% end %>
-<p>
-  <%= link_to @book.user.name, user_path(@book.user) %>
-</p>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@book.user),
+              class: "d-flex flex-column align-items-center text-decoration-none link-underline" do %>
 
-<p><%= @book.title %></p>
-<p><%= @book.body %></p>
+          <%= image_tag @book.user.get_profile_image(100,100) %>
 
-<%= link_to "Edit", edit_book_path(@book) %> 
-<%= link_to "Destroy", book_path(@book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"} %>
+          <span class="fw-bold"><%= @book.user.name %></span>
+
+        <% end %>
+      </td>
+
+      <td><%= @book.title %></td>
+
+      <td><%= @book.body %></td>
+
+      <td>
+          <%= link_to "Edit", edit_book_path(@book), class: "btn", style: "background-color: #9acd32; color: white;" %> 
+      </td>
+      <td>
+          <%= link_to "Destroy", book_path(@book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class: "btn", style: "background-color: #ff0000; color: white;" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
