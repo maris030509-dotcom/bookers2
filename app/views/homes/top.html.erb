@@ -1,12 +1,18 @@
-<h1>welcome to Bookers !!</h1>
+<div class="text-center my-3">
 
-<p>In<strong>Bookers,</strong></p>
-<p>you can share and exchange your opinions , inpressions , and emotions
+  <div class="d-inline-block text-start">
+    <h1>welcome to <i class="fa-solid fa-book"></i>
+    <span style="font-weight: 900;">Bookers</span> !!
+    </h1>
 
-about various books!</p>
+    <p>In<i class="fa-solid fa-book"></i><strong>Bookers,</strong></p>
+    <p>you can share and exchange your opinions , inpressions , and emotions</p>
+    <p>about various books!</p>
 
-<%= link_to "Log in", new_session_path %><br>
-<%= link_to "Sign up", new_user_path %><br>
+    <%= link_to "Log in", new_session_path, class: "btn", style: "background-color: #5bc0de; color: white; display:block;" %><br>
+    <%= link_to "Sign up", new_user_path, class: "btn", style: "background-color: #9acd32; color: white; display:block;" %>
+  </div>
+</div>
 
 
 
