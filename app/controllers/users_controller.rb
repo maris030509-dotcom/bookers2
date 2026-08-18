@@ -12,15 +12,34 @@ class UsersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
 
   def edit
-    @user = 
+    @user = User.find(params[:id])
   end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
   end
- 
+  
+  def show
+    @user = User.find(params[:id])
+    @books = @user.books
+  end
+
+  def index
+    @users = User.all
+  end
+
+
   private
  
   def user_params
-    params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
+    params.require(:user).permit(:name, :profile_image, :introduce, :password, :password_confirmation, :email_address)
   end
 end

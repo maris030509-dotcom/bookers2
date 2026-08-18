@@ -1,0 +1,30 @@
+<h1>User info</h1>
+
+<div class="profile-image">
+    <%= image_tag @user.get_profile_image(100, 100), class: "profile-img" %>
+</div>
+
+  <table class="profile-table">
+    <tr>
+      <th>name</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <td><%= @user.introduce %></td>
+    </tr>
+  </table>
+
+<% if @user.id == current_user.id %>
+    <div class="profile-edit">
+      <%= link_to "edit", edit_user_path(@user), class: "edit-btn" %>
+    </div>
+<% end %>
+
+<h1>Books</h1>
+<% @books.each do |book| %>
+    <p>
+      <%= link_to book.title, book_path(book) %>
+    </p>
+    <p><%= book.body %></p>
+<% end %>

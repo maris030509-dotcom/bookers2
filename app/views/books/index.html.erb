@@ -1,2 +1,10 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<h1>Books</h1>
+<% @books.each do |book| %>
+  <div>
+    <%= link_to user_path(book.user) do %>
+      <%= image_tag book.user.get_profile_image(100,100) %>
+    <% end %>
+    <%= link_to book.title, book_path(book) %>
+    <p>説明：<%= book.body %></p>
+  </div>
+<% end %>

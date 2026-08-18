@@ -1,2 +1,14 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h1>Book detail</h1>
+
+<%= link_to user_path(@book.user) do %>
+  <%= image_tag @book.user.get_profile_image(100,100) %>
+<% end %>
+<p>
+  <%= link_to @book.user.name, user_path(@book.user) %>
+</p>
+
+<p><%= @book.title %></p>
+<p><%= @book.body %></p>
+
+<%= link_to "Edit", edit_book_path(@book) %> 
+<%= link_to "Destroy", book_path(@book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"} %>
