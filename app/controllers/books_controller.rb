@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
+    @sidebar_user = current_user
     @book = Book.new
     @books = Book.all
     
