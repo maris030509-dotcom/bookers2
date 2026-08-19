@@ -44,7 +44,7 @@
                 </li>
                 <li>
                   <%= link_to users_path, class: "nav-link text-white" do %>
-                    <i class="fa-solid fa-users"></i>users
+                    <i class="fa-solid fa-users"></i>Users
                   <% end %>
                 </li>
                 <li>
@@ -64,7 +64,7 @@
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to homes_about_path, class: "nav-link text-white" do %>
+                  <%= link_to home_about_path, class: "nav-link text-white" do %>
                     <i class="fa-solid fa-link"></i>About
                   <% end %>
                 </li>
@@ -90,25 +90,7 @@
   
   <div class="container mt-4">
     <div class="row">
-
-    <% if @sidebar_user.present? %>
-      <!-- 左サイドバー -->
-      <div class="col-md-3">
-        <% if @sidebar_user && @sidebar_book %>
-          <%= render "shared/sidebar", user: @sidebar_user, book: @sidebar_book %>
-        <% end %>
-      </div>
-    
-      <!-- メインコンテンツ -->
-      <div class="col-md-8 offset-md-1">
-        <%= yield %>
-      </div>
-    <% else %>
-      <!-- メインコンテンツ（サイドバーなし） -->
-      <div class="col-md-12">
-        <%= yield %>
-      </div>
-    <% end %>
+      <%= yield %>
     </div>
   </div>
 

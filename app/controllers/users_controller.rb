@@ -45,14 +45,21 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  before_action :ensure_correct_user, only: [:edit, :update]
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless @user == current_user
+  end
+
 
   private
  
   def user_params
     if action_name == "create"
-      params.require(:user).permit(:name, :profile_image, :introduce, :password, :password_confirmation, :email_address)
+      params.require(:user).permit(:name, :profile_image, :introduction, :password, :password_confirmation, :email_address)
     else
-      params.require(:user).permit(:name, :profile_image, :introduce, :email_address)
+      params.require(:user).permit(:name, :profile_image, :introduction, :email_address)
     end
   end
 end

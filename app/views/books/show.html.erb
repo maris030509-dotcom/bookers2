@@ -1,44 +1,48 @@
-<% @sidebar_user = @book.user %>
-<% @sidebar_book = Book.new %>
-<h2>Book detail</h2>
-<table class="table bg-white">
-  <thead>
-    <tr class="border-bottom">
-      <th class="fw-bolder p-2"></th>
-      <th class="fw-bolder p-2"></th>
-      <th class="fw-bolder p-2"></th>
-    </tr>
-  </thead>
+<div class="col-md-3">
+  <%= render "shared/sidebar", user: current_user, book: Book.new %>
+</div>
 
-  <tbody>
-    <tr class="border-bottom">
-      <td class="fw-bolder p-2">
-        <%= link_to user_path(@book.user),
-              class: "d-flex flex-column align-items-center text-decoration-none link-underline" do %>
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
 
-          <%= image_tag @book.user.get_profile_image(100,100) %>
+  <table class="table bg-white">
+    <thead>
+      <tr class="border-bottom">
+        <th class="fw-bolder p-2"></th>
+        <th class="fw-bolder p-2"></th>
+        <th class="fw-bolder p-2"></th>
+      </tr>
+    </thead>
 
-          <span class="fw-bold"><%= @book.user.name %></span>
+    <tbody>
+      <tr class="border-bottom">
+        <td class="fw-bolder p-2">
+          <%= link_to user_path(@book.user), class: "d-flex flex-column align-items-center text-decoration-none link-underline" do %>
 
-        <% end %>
-      </td>
+            <%= image_tag @book.user.get_profile_image(100,100) %>
 
-      <td class="fw-bolder p-2">
-        <%= @book.title %>
-      </td>
+            <span class="fw-bold"><%= @book.user.name %></span>
 
-      <td colspan="3", class="fw-bolder p-2 w-50">
-        <%= @book.body %>
-      </td>
+          <% end %>
+        </td>
+
+        <td class="fw-bolder p-2">
+          <%= @book.title %>
+        </td>
+
+        <td colspan="3" class="fw-bolder p-2 w-50">
+          <%= @book.body %>
+        </td>
       
-    <% if @book.user == current_user %>
-      <td>
+      <% if @book.user == current_user %>
+        <td>
           <%= link_to "Edit", edit_book_path(@book), class: "btn", style: "background-color: #9acd32; color: white;" %> 
-      </td>
-      <td>
+        </td>
+        <td>
           <%= link_to "Destroy", book_path(@book), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？"}, class: "btn", style: "background-color: #ff0000; color: white;" %>
-      </td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+        </td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

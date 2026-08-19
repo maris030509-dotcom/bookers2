@@ -27,8 +27,9 @@
         <%= f.submit "Update Book", class: "btn", 
             style: "background-color: #008000; color: white;" %><br>
       </div>
-
-    <%= link_to "show", book_path(@book.id) %> | <%= link_to "Back", books_path %>
     <% end %>
+
+    <%= link_to "show", book_path(@book) %> | <%= link_to "Back", books_path %>
+    
   </div>
 </div>

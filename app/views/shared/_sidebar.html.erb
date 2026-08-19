@@ -11,7 +11,7 @@
     </tr>
     <tr class="border-bottom">
       <th class="fw-bolder p-2">introduction</th>
-      <td class="fw-bolder p-2"><%= user.introduce %></td>
+      <td class="fw-bolder p-2"><%= user.introduction %></td>
     </tr>
   </table>
 
@@ -22,12 +22,6 @@
           class: "btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center",
           style: "border: 1px solid #000000 ;" do %>
         <i class="fa-solid fa-user-gear"></i>
-      <% end %>
-    <% else %>
-      <%= link_to user_path(current_user), 
-          class: "btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center",
-          style: "border: 1px solid #000000 ;" do %>
-      <i class="fa-solid fa-user-gear"></i>
       <% end %>
     <% end %>
   </div>

@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(name: params[:name])
     
-    if (user = User.find_by(name: params[:name]))&.authenticate(params[:password])
+    if user&.authenticate(params[:password])
       start_new_session_for user
+      flash[:notice] = "You have logged in successfully."
       redirect_to user_path(user)
     else
       redirect_to new_session_path, alert: "Try another name or password."
