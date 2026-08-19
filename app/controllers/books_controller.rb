@@ -9,12 +9,11 @@ class BooksController < ApplicationController
   end
 
   def create
-    @sidebar_user = current_user
-    @sidebar_book = Book.new(book_params)
-    @sidebar_book.user = current_user
-
-    if @sidebar_book.save
-      redirect_to @sidebar_book, notice: "You have created book successfully."
+    @book = Book.new(book_params)
+    @book.user = current_user
+    
+    if @book.save
+      redirect_to @book, notice: "You have created book successfully."
     else
       @books = Book.all
       render :index, status: :unprocessable_entity
@@ -23,17 +22,17 @@ class BooksController < ApplicationController
 
   def show
     @sidebar_user = @book.user
-    @sidebar_book = Book.new
+    @book_new = Book.new
   end
 
   def edit
     @sidebar_user = @book.user
-    @sidebar_book = Book.new
+    @book_new = Book.new
   end
 
   def update
     @sidebar_user = @book.user
-    @sidebar_book = Book.new
+    @book_new = Book.new
 
     if @book.update(book_params)
       redirect_to @book, notice: "You have updated book successfully."
