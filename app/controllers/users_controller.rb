@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: [:new, :create] 
+    before_action :ensure_correct_user, only: [:edit, :update]
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless @user == current_user
+  end
 
   def new
     @user = User.new
@@ -48,14 +54,6 @@ class UsersController < ApplicationController
     @book_new = Book.new
     @users = User.all
   end
-
-  before_action :ensure_correct_user, only: [:edit, :update]
-
-  def ensure_correct_user
-    @user = User.find(params[:id])
-    redirect_to user_path(current_user) unless @user == current_user
-  end
-
 
   private
  
