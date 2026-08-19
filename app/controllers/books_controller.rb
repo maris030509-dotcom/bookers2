@@ -7,7 +7,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user = Current.session.user
     @book.save
-    redirect_to @book
+    redirect_to @book, notice: "You have created book successfully."
   end
 
   def index

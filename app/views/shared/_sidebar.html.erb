@@ -1,0 +1,50 @@
+<h2>User info</h2>
+
+<div class="profile-image">
+    <%= image_tag user.get_profile_image(100, 100), class: "profile-img" %>
+</div>
+
+  <table class="profile-table bg-white">
+    <tr class="border-top border-bottom">
+      <th class="fw-bolder p-2">name</th>
+      <td class="fw-bolder p-2"><%= user.name %></td>
+    </tr>
+    <tr class="border-bottom">
+      <th class="fw-bolder p-2">introduction</th>
+      <td class="fw-bolder p-2"><%= user.introduce %></td>
+    </tr>
+  </table>
+
+
+  <div class="profile-edit">
+    <% if user == current_user %>
+      <%= link_to edit_user_path(user), 
+          class: "btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center",
+          style: "border: 1px solid #000000 ;" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(current_user), 
+          class: "btn btn-outline-secondary btn-block d-flex justify-content-center align-items-center",
+          style: "border: 1px solid #000000 ;" do %>
+      <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="d-inline-block text-start p-2 ">
+    <h2>New book</h2>
+    <%= form_with model: book do |f| %>
+      <div class="field mb-3">
+        <%= f.label :title, "Title" %><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+  
+      <div class="field mb-3">
+        <%= f.label :body, "Opinion" %><br>
+        <%= f.text_area :body, maxlength: 200, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Create Book", class: "btn", style: "background-color: #32cd56; color: white;" %>
+    <% end %>
+  </div>

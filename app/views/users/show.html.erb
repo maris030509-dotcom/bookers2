@@ -1,32 +1,32 @@
-<h1>User info</h1>
+<% @sidebar_user = @user %>
+<% @sidebar_book = Book.new %>
 
-<div class="profile-image">
-    <%= image_tag @user.get_profile_image(100, 100), class: "profile-img" %>
-</div>
+<h2>Books</h2>
 
-  <table class="profile-table">
-    <tr>
-      <th>name</th>
-      <td><%= @user.name %></td>
+<table class="table bg-white">
+  <thead>
+    <tr class="border-top border-bottom">
+      <th class="fw-bolder p-2"></th>
+      <th class="fw-bolder p-2">Title</th>
+      <th class="fw-bolder p-2">Opinion</th>
     </tr>
-    <tr>
-      <th>introduction</th>
-      <td><%= @user.introduce %></td>
-    </tr>
-  </table>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr class="border-top border-bottom">
+        <td class="fw-bolder p-2">
+          <%= link_to user_path(book.user) do %>
+            <%= image_tag book.user.get_profile_image(80,80) %>
+          <% end %>
+        </td>
 
-<% if @user.id == current_user.id %>
-    <div class="profile-edit">
-      <%= link_to edit_user_path(@user), class: "btn btn-light w-50 d-flex justify-content-center align-items-center" do %>
-        <i class="fa-solid fa-user-gear"></i>
-      <% end %>
-    </div>
-<% end %>
-
-<h1>Books</h1>
-<% @books.each do |book| %>
-    <p>
-      <%= link_to book.title, book_path(book) %>
-    </p>
-    <p><%= book.body %></p>
-<% end %>
+        <td class="fw-bolder p-2">
+          <%= link_to book.title, book_path(book) %>
+        </td>
+        <td colspan="3", class="fw-bolder p-2 w-50">
+          <%= book.body %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

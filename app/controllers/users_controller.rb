@@ -21,8 +21,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    Rails.logger.info "PROFILE ATTACHED?: #{@user.profile_image.attached?}"
+    Rails.logger.info "PARAMS: #{user_params.inspect}"
+
+
+    puts "PROFILE ATTACHED?: #{@user.profile_image.attached?}"
+    puts "PARAMS: #{user_params.inspect}"
+    
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to @user, notice: "You have updated user successfully."
     else
       render :edit
     end
@@ -41,6 +49,10 @@ class UsersController < ApplicationController
   private
  
   def user_params
-    params.require(:user).permit(:name, :profile_image, :introduce, :password, :password_confirmation, :email_address)
+    if action_name == "create"
+      params.require(:user).permit(:name, :profile_image, :introduce, :password, :password_confirmation, :email_address)
+    else
+      params.require(:user).permit(:name, :profile_image, :introduce, :email_address)
+    end
   end
 end

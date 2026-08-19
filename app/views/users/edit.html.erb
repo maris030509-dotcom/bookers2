@@ -1,10 +1,24 @@
 <div class="text-center my-3">
   <div class="d-inline-block text-start">
+
     <h1>User info</h1>
+    <% if @user.errors.any? %>
+      <div class="error-box">
+        <div class="error-title">
+          <%= @user.errors.count %> errors prohibited this user from being saved:
+        </div>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
     <%= form_with model: @user do |f| %>
       <div class="mb-3">
         <label for="inputName">Name</label><br>
-        <%= f.text_field :name, autofocus: true, id:"inputName", minlength: 2, maxlength: 20, class: "form-control" %>
+        <%= f.text_field :name, autofocus: true, id:"inputName", class: "form-control" %>
       </div>
       
       <div class="mb-3">

@@ -1,15 +1,26 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="my-3 mx-5">
+  <h2>Log in</h2>
+  <%= form_with url: session_path do |form| %>
+    <div class="mb-1">
+      <p>Name</p>
+      <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username",  value: params[:name] ,minlength: 2 ,maxlength: 20 %>
+    </div>
 
-<h1>Log in</h1>
-<%= form_with url: session_path do |form| %>
-  <p>Name</p>
-  <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username",  value: params[:name] ,minlength: 2 ,maxlength: 20 %><br>
-  <p>Password</p>
-  <%= form.password_field :password, required: true, autocomplete: "current-password",  maxlength: 20 %><br>
-  <%= form.submit "Log in" %>
-<% end %>
-<br>
+    <div class="mb-2">
+      <p>Password</p>
+      <%= form.password_field :password, required: true, autocomplete: "current-password",  maxlength: 20 %><br>
+    </div>
+
+    <div class="mb-2">
+      <%= form.check_box :remember_me %>
+      <%= form.label :remember_me, "Remember me" %>
+    </div>
+
+    <div class="mb-1">
+      <%= form.submit "Log in", class: "btn", style: "background-color: #5bc0de; color: white;" %>
+    </div>
+  <% end %>
 
 <%= link_to "Sign up", new_user_path %><br>
 <%= link_to "Forgot password?", new_password_path %>
+</div>

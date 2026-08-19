@@ -1,5 +1,4 @@
 <div class="text-center my-3">
-
   <div class="d-inline-block text-start">
     <h1>welcome to <i class="fa-solid fa-book"></i>
     <span style="font-weight: 900;">Bookers</span> !!
@@ -9,8 +8,10 @@
     <p>you can share and exchange your opinions , inpressions , and emotions</p>
     <p>about various books!</p>
 
-    <%= link_to "Log in", new_session_path, class: "btn", style: "background-color: #5bc0de; color: white; display:block;" %><br>
-    <%= link_to "Sign up", new_user_path, class: "btn", style: "background-color: #9acd32; color: white; display:block;" %>
+    <%= link_to "Log in", new_session_path, class: "btn d-block", 
+        style: "background-color: #5bc0de; color: white;" %><br>
+    <%= link_to "Sign up", new_user_path, class: "btn d-block", 
+        style: "background-color: #9acd32; color: white;" %>
   </div>
 </div>
 
