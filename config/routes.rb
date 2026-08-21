@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   resources :books, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resource :session
   resources :passwords, param: :token
-  root to: "homes#top"
+  resources :books do
+    resource :favorite, only: [:create, :destroy]
+  end
+  resources :books do
+    resources :book_comments, only: [:create, :destroy]
+  end
+
+    root to: "homes#top"
   get 'home/about' => 'homes#about'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   def show
     @sidebar_user = @book.user
     @book_new = Book.new
+    @book = Book.find(params[:id])
   end
 
   def edit

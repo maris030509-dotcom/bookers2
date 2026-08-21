@@ -21,6 +21,8 @@
             <th class="fw-bolder p-2"></th>
             <th class="fw-bolder p-2">Title</th>
             <th class="fw-bolder p-2">Opinion</th>
+            <th class="fw-bolder p-2"></th>
+            <th class="fw-bolder p-2"></th>
           </tr>
         </thead>
 
@@ -37,8 +39,26 @@
                 <%= link_to book.title, book_path(book) %>
               </td>
         
-              <td colspan="3", class="fw-bolder p-2 w-50">
+              <td colspan="3", class="fw-bolder p-2">
                 <%= book.body %></p>
+              </td>
+              
+            <% if book.favorited_by?(Current.user) %>
+              <td class="fw-bolder p-2">
+                <%= link_to book_favorite_path(book), data: { turbo_method: :delete } do %>
+                  ♥<%= book.favorites.count %> いいね
+                <% end %>
+              </td>
+            <% else %>
+              <td class="fw-bolder p-2">
+                <%= link_to book_favorite_path(book), data: { turbo_method: "post" } do %>
+                  ♡<%= book.favorites.count %> いいね
+                <% end %>
+              </td>
+            <% end %>
+
+              <td>
+                コメント数：<%= book.book_comments.count %>
               </td>
             </tr>
           <% end %>
